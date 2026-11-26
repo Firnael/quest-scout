@@ -1,0 +1,33 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <!-- Plain frames, not MapCanvas pins: see the top of Pins.lua (Gamepad UI taint). -->
+    <Button name="QuestScoutPinTemplate" mixin="QuestScoutPinMixin" virtual="true">
+        <Size x="18" y="18"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="Icon" setAllPoints="true"/>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnEnter method="OnEnter"/>
+            <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
+        </Scripts>
+    </Button>
+    <Frame name="QuestScoutDotTemplate" mixin="QuestScoutDotMixin" virtual="true">
+        <Size x="8" y="8"/>
+        <Layers>
+            <Layer level="OVERLAY" textureSubLevel="1">
+                <Texture parentKey="Outline" file="Interface\CharacterFrame\TempPortraitAlphaMask" setAllPoints="true"/>
+            </Layer>
+            <Layer level="OVERLAY" textureSubLevel="2">
+                <Texture parentKey="Disc" file="Interface\CharacterFrame\TempPortraitAlphaMask">
+                    <Size x="6" y="6"/>
+                    <Anchors><Anchor point="CENTER"/></Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+</Ui>

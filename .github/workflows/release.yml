@@ -1,0 +1,35 @@
+name: Release
+
+# Pushing a tag vX.Y.Z publishes QuestScout-X.Y.Z-forever.zip as a GitHub release, which wam
+# (wow-addon-manager) installs and updates. The tag must match "## Version:" in the .toc.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+env:
+  ADDON: QuestScout # folder name in AddOns
+  SRC: QuestScout # its path in the repo
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Package
+        run: |
+          ver="${GITHUB_REF_NAME#v}"
+          if ! grep -qE "^## Version: $ver\s*$" "$SRC/$ADDON.toc"; then
+            echo "::error::$ADDON.toc does not say '## Version: $ver'"; exit 1
+          fi
+          mkdir -p "dist/$ADDON"
+          rsync -a --exclude='.*' --exclude=dist --exclude=tools --exclude=CLAUDE.md --exclude=README.md "$SRC/" "dist/$ADDON/"
+          if [ -f LICENSE ]; then cp LICENSE "dist/$ADDON/LICENSE"; fi
+          (cd dist && zip -qr "../$ADDON-$ver-forever.zip" "$ADDON")
+          unzip -l "$ADDON-$ver-forever.zip"
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "$ADDON-${GITHUB_REF_NAME#v}-forever.zip" --title "$ADDON ${GITHUB_REF_NAME#v}" --generate-notes

@@ -1,0 +1,19 @@
+## Interface: 16001
+## Title: Quest Scout
+## Notes: Quest starts on the world map, with class/profession/dungeon badges, and a "which zone now?" panel.
+## Author: aburlot
+## Version: 1.0.0
+## Dependencies: QuestieDB
+## OptionalDeps: Questie, TomTom
+## SavedVariables: QuestScoutDB
+
+Extras.lua
+Quests.lua
+Data.lua
+Advisor.lua
+Panel.lua
+Badges.lua
+Waypoints.lua
+Pins.xml
+Pins.lua
+Options.lua
