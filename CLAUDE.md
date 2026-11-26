@@ -22,7 +22,7 @@ Addon WoW Forever perso : débuts de quête sur la carte (repères colorés + pa
 - Nom affiché « Quest Scout », nom technique `QuestScout` (dossier, TOC, `QuestScoutDB`).
   Ancien nom : QuestRange (dépôt renommé `quest-range` → `quest-scout` le 2026-11-12).
 - Commande : `/qscout`. Préfixe chat : `ns.Print` (« Quest Scout » en bleu).
-- Dépôt : https://github.com/Firnael/quest-scout (privé), remote SSH.
+- Dépôt : https://github.com/Firnael/quest-scout (public depuis le 2026-11-26, licence MIT), remote SSH.
 
 ## Structure
 
